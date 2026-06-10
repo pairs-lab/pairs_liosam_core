@@ -1,0 +1,24 @@
+location: .gitman
+sources:
+  - repo: https://github.com/ctu-mrs/liosam
+    name: liosam
+    rev: master
+    type: git
+    sparse_paths:
+      -
+    links:
+      - source: ''
+        target: liosam
+    scripts:
+      - git submodule update --init --recursive
+  - repo: https://github.com/pairs-lab/pairs_liosam_estimator_plugin
+    name: pairs_liosam_estimator_plugin
+    rev: ros1
+    type: git
+    sparse_paths:
+      -
+    links:
+      - source: ''
+        target: pairs_liosam_estimator_plugin
+    scripts:
+      - git submodule update --init --recursive

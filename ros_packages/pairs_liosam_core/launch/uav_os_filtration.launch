@@ -1,0 +1,49 @@
+<launch>
+  <!-- Filtration parameters -->
+  <arg name="UAV_NAME" default="$(env UAV_NAME)" />
+  <arg name="node_name" default="pcl_filtration" />
+
+  <arg name="topic/lidar3d/points_raw" default="" />
+  <arg name="topic/lidar3d/points_proc" default="" />
+  <arg name="topic/lidar3d/points_over_max_range" default="" />
+
+  <arg name="custom_config/default" default="" />
+  <arg name="custom_config/lidar3d" default="" />
+  <arg name="custom_config/depth" default="" />
+
+  <arg name="nodelet" default="standalone" />
+  <arg name="nodelet_manager" default="" />
+  <arg name="launch_prefix" default=""/>
+
+  <group ns="$(arg UAV_NAME)">
+    <node pkg="nodelet" type="nodelet" name="$(arg node_name)" args="$(arg nodelet) pairs_pcl_tools/PCLFiltration $(arg nodelet_manager)" output="screen" launch-prefix="$(arg launch_prefix)" respawn="true" >
+
+      <!-- Parameters -->
+      <param name="uav_name" type="string" value="$(arg UAV_NAME)" />
+
+      <!-- Load custom config file -->
+      <rosparam file="$(arg custom_config/default)" command="load" />
+
+      <!-- Load model-specific lidar parameters from a config file -->
+      <rosparam if="$(eval not arg('custom_config/lidar3d') == '')" file="$(arg custom_config/lidar3d)" command="load" />
+      
+      <!-- Load depth camera parameters from a config file -->
+      <rosparam if="$(eval not arg('custom_config/depth') == '')" file="$(arg custom_config/depth)" command="load" />
+
+      <!-- Subscribers -->
+      <remap from="~lidar3d_in" to="$(arg topic/lidar3d/points_raw)" />
+      <remap from="~rplidar_in" to="rplidar/scan_raw" />
+      <remap from="~rangefinder_in" to="mavros/distance_sensor/garmin" />
+
+      <!-- Publishers -->
+      <remap from="~lidar3d_out" to="$(arg topic/lidar3d/points_proc)" />
+      <remap from="~lidar3d_over_max_range_out" to="$(arg topic/lidar3d/points_over_max_range)" />
+      <remap from="~lidar3d_dust_detection" to="dust_detection/detected" />
+      <remap from="~rplidar_out" to="rplidar/scan_processed" />
+      <remap from="~diagnostics_out" to="pcl_filter/diagnostics" />
+
+    </node>
+
+  </group>
+
+</launch>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+
+  <name>pairs_liosam_core</name>
+  <version>1.0.0</version>
+  <description>The PAIRS LIO-SAM core metapackage</description>
+
+  <maintainer email="canhthanh@vnu.edu.vn">Thanh Nguyen Canh</maintainer>
+  <author email="canhthanh@vnu.edu.vn">Thanh Nguyen Canh</author>
+
+  <license>BSD 3-Clause</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>cmake_modules</depend>
+
+  <depend>liosam</depend>
+  <depend>pairs_liosam_estimator_plugin</depend>
+
+</package>
