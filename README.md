@@ -1,7 +1,6 @@
 # pairs_liosam_core
 
-**PAIRS LIO-SAM core** metapackage — a faithful rename-port of the CTU-MRS
-`pairs_liosam_core`. Runs the PAIRS UAV system with LIO-SAM LiDAR-inertial SLAM.
+**PAIRS LIO-SAM core** metapackage. Runs the PAIRS UAV system with LIO-SAM LiDAR-inertial SLAM.
 
 The SLAM backend `liosam` (TixiaoShan LIO-SAM, CTU fork; depends on GTSAM, from
 apt as `ros-noetic-gtsam`) is kept under its upstream name (third-party) and
@@ -14,4 +13,4 @@ Component repositories are managed via `ros_packages/.gitman.yml` (`gitman insta
 
 ## License
 BSD 3-Clause. Derived from the CTU-MRS `pairs_liosam_core`; original copyright
-retained in [LICENSE](LICENSE). Maintainer: Thanh Nguyen Canh <canhthanh@vnu.edu.vn>
+retained in [LICENSE](LICENSE).
